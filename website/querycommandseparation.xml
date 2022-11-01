@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="blog2html-v1.0.xsl"?>
+<?xml-stylesheet type="text/css" href="css/authoring-blog.twan.com.css"?>
+<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="blog.twan.com.xsd">
+    <header>
+        <title>Query Command Separation</title>
+        <author>Twan van der Schoot</author>
+        <date>2016-07-01</date>
+    </header>
+    <sections><section>
+            <h>Introduction</h>
+            <p>As of today a lot is written about CQRS-ES as pattern for constructing software, or
+                    <emphasis>Command Query Responsibility Separation - Event Sourcing</emphasis>
+                and the proposed architectures and patterns are anything but trivial. But the
+                motivations  behind it are limited to</p>
+        </section><section>
+            <h>The origins</h>
+            <p>All introductions to CQRS obligingly refer to Bertand Meyer <margin position="left"
+                    >Meyer 1997</margin> as the father of the idea to divide methods <margin
+                    position="right">Meyer calls <emphasis>methods</emphasis> "features" as they are
+                    called in  Eiffel.</margin> into 2 mutually excluding categories:
+                    <emphasis>queries</emphasis> and <emphasis>commands</emphasis>.
+                    <emphasis>Queries</emphasis> are methods which return a result and have no side
+                effects, i.e. invoking such a method doesn't change the state of the object
+                instance, and are the closest thing to the mathematical  notion of a
+                    <emphasis>function.</emphasis><emphasis>Commands </emphasis>are methods which
+                don't return a result but do change the state of the object instance and are most
+                similar to a <emphasis>procedure </emphasis> in a programming language like Pascal
+                or a void function in C/C++.</p>
+        </section></sections>
+</article>

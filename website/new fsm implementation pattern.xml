@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="css/authoring-blog.twan.com.css"?>
+<?xml-stylesheet type="text/css" href="authoring-blog.twan.com.css"?>
+<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/Users/Twan/Dropbox/TWAN.COM/TCM/TCM1501/website/blog.twan.com.xsd">
+    <header>
+        <title>An Alternative Finite State Machine Implementation Pattern</title>
+        <author>Twan van der Schoot</author>
+        <affiliation>TWAN.COM</affiliation>
+        <date>2015-11-13</date>
+        <abstract>Finite state machines (FSM)  represent arguably the simpelist models of
+            computation . Despite their simplicity the expressive power  of an FSM make a direct
+            implementation  very attriactive on every conceivable level of abstraction in the
+            construction of computer programs.  Which is  probably the reason why there are so many
+            form sin which FSMs are  implemented in about every existing programming language.  In
+            this essay we sketch a rough categorization of the existing implementation  patterns,
+            and introduce, as we believe a new  and very elegant  one.</abstract>
+    </header>
+    <p>Writing plan<ol>
+            <li>A quick definition of a finite statemachine</li>
+            <li>A summary of its advantages and attractiveness</li>
+            <li>A note on the appearance of FSM on every level of abstraction</li>
+            <li>The running example </li>
+            <li>The inventory<ol>
+                    <li> if-then-else chains</li>
+                    <li> switch-like statements</li>
+                    <li>Coroutines<ol>
+                            <li>protothreads</li>
+                            <li>counters</li>
+                            <li>other "implicit position bookmarking" techniques.</li>
+                            <li>call with continuations &amp; call backs</li>
+                        </ol></li>
+                    <li>table based methods</li>
+                    <li>State-pattern from GoF</li>
+                </ol></li>
+            <li> Some notes about the suitability of an implementation pattern
+                    <emphasis>given</emphasis> the implementation programming
+                language/paradigm.</li>
+            <li>Introduction to the new pattern<ol>
+                    <li>noting its simplicity and taking a humble attitude</li>
+                    <li>the implementation in Python as proto type</li>
+                    <li>The desirability of the implementation pattern in C/C++</li>
+                    <li>The simple implementation of the pattern in C++ based on simple or static
+                        inheritance (not static members)<ol>
+                            <li>The derivation of the member function typing</li>
+                            <li>The necessity of the forward reference of the class</li>
+                            <li>The implementation pattern</li>
+                            <li>Its limitation with regard to inheritance</li>
+                        </ol></li>
+                    <li>The desirability of inheritance of maintainablitiy and the relevance of
+                        specialization by inheritance </li>
+                    <li>Making the overriden functions virtual and the vtable </li>
+                    <li>The complete extensible pattern.</li>
+                </ol></li>
+            <li>Pragmatics of the pattern<ol>
+                    <li>using a step() member function</li>
+                    <li>introducing a restart() member function</li>
+                    <li>defining a done() member function</li>
+                    <li>Implementing a "fallthrough"
+                        <?oxy_comment_start author="Twan" timestamp="20151113T011314+0100" comment="Just call the state member function which would be the next case in a switch.  It is similar to an epsilon or &quot;empty&quot; step in teh FSA theory."?>scenario<?oxy_comment_end?>
+                    </li>
+                </ol></li>
+            <li>History and context<ol>
+                    <li>Hewitt and Gul Agha</li>
+                    <li>trampolining in javascript</li>
+                    <li>Erlang and Haskell</li>
+                    <li/>
+                </ol></li>
+        </ol></p>
+</article>

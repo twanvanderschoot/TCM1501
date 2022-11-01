@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <meta charset="utf-8">
+      <title>An Alternative Finite State Machine Implementation Pattern</title>
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/blog.twan.com.css">
+   </head>
+   <body>
+      <div id="page">
+         <div id="header"><a href="http://www.twan.com" title="Back to the home page."><img src="images/twan.com-header-50x470.png" alt="TWAN.COM logo"></a></div>
+         <div id="floater-top" title="Back to the home page.">HOME</div>
+         <div id="body">
+            <article>
+               
+               <header>
+                  <h1>An Alternative Finite State Machine Implementation Pattern</h1>
+                  <p class="date">2015-11-13</p><a rel="author" href="mailto:">Twan van der Schoot</a><a rel="affiliation" href="">TWAN.COM</a><div class="abstract">Finite state machines (FSM)  represent arguably the simpelist models of
+                     computation . Despite their simplicity the expressive power  of an FSM make a direct
+                     implementation  very attriactive on every conceivable level of abstraction in the
+                     construction of computer programs.  Which is  probably the reason why there are so many
+                     form sin which FSMs are  implemented in about every existing programming language.  In
+                     this essay we sketch a rough categorization of the existing implementation  patterns,
+                                 and introduce, as we believe a new  and very elegant  one.
+                  </div>
+               </header>
+                   
+               <p>Writing plan
+                  <ol>
+                     <li>A quick definition of a finite statemachine</li>
+                     <li>A summary of its advantages and attractiveness</li>
+                     <li>A note on the appearance of FSM on every level of abstraction</li>
+                     <li>The running example </li>
+                     <li>The inventory
+                        <ol>
+                           <li> if-then-else chains</li>
+                           <li> switch-like statements</li>
+                           <li>Coroutines
+                              <ol>
+                                 <li>protothreads</li>
+                                 <li>counters</li>
+                                 <li>other "implicit position bookmarking" techniques.</li>
+                                 <li>call with continuations &amp; call backs</li>
+                              </ol>
+                           </li>
+                           <li>table based methods</li>
+                           <li>State-pattern from GoF</li>
+                        </ol>
+                     </li>
+                     <li> Some notes about the suitability of an implementation pattern
+                                            <em>given</em> the implementation programming
+                                        language/paradigm.
+                     </li>
+                     <li>Introduction to the new pattern
+                        <ol>
+                           <li>noting its simplicity and taking a humble attitude</li>
+                           <li>the implementation in Python as proto type</li>
+                           <li>The desirability of the implementation pattern in C/C++</li>
+                           <li>The simple implementation of the pattern in C++ based on simple or static
+                                                      inheritance (not static members)
+                              <ol>
+                                 <li>The derivation of the member function typing</li>
+                                 <li>The necessity of the forward reference of the class</li>
+                                 <li>The implementation pattern</li>
+                                 <li>Its limitation with regard to inheritance</li>
+                              </ol>
+                           </li>
+                           <li>The desirability of inheritance of maintainablitiy and the relevance of
+                                                      specialization by inheritance 
+                           </li>
+                           <li>Making the overriden functions virtual and the vtable </li>
+                           <li>The complete extensible pattern.</li>
+                        </ol>
+                     </li>
+                     <li>Pragmatics of the pattern
+                        <ol>
+                           <li>using a step() member function</li>
+                           <li>introducing a restart() member function</li>
+                           <li>defining a done() member function</li>
+                           <li>Implementing a "fallthrough"
+                                                      scenario
+                                                  
+                           </li>
+                        </ol>
+                     </li>
+                     <li>History and context
+                        <ol>
+                           <li>Hewitt and Gul Agha</li>
+                           <li>trampolining in javascript</li>
+                           <li>Erlang and Haskell</li>
+                           <li></li>
+                        </ol>
+                     </li>
+                  </ol>
+               </p>
+               
+            </article>
+         </div>
+         <div id="footer" title="To the index.">
+            <div id="floater-mask"></div>
+            <div id="index">INDEX</div>
+         </div>
+         <div id="floater-bottom" title="To the index."></div>
+      </div>
+   </body><script src="scripts/lib/jquery-1.9.1.min.js"></script><script src="scripts/blog.js"></script></html>

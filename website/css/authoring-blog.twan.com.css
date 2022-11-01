@@ -1,0 +1,417 @@
+
+/* CSS for Oxygen authoring with blog.twan.com.xsd */
+article{
+    font-family:"Georgia", serif;
+    font-size:1em;
+    display:block;
+    counter-reset: images codesnippets;
+}
+
+header{
+    display:block;
+}
+
+title{
+    display:block;
+    font-size:2em;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    text-align:center;
+}
+
+subtitle{
+    display:block;
+    font-size:1.7em;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    text-align:center;
+}
+
+date{
+    display:block;
+    text-align:center;
+}
+
+author{
+    display:block;
+    text-align:center;
+}
+
+affiliation {
+    display:block;
+    text-align:center;
+}
+
+sections{
+    display:block;
+    counter-reset:section;
+}
+
+h{
+    display:block;
+    font-size:inherit;
+}
+
+
+hr {
+    display:block;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid gray;
+}
+
+
+section{
+    counter-increment:section;
+}
+
+h:before{
+    content:counters(section, ".") " ";
+}
+
+sections > section > h {
+    display:block;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    font-size:1.7em;
+    font-family:sans-serif;
+    color:green;
+    margin-top:2em;
+    margin-bottom:1em;
+}
+
+
+
+sections > section> sections > section > h{
+    display:block;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    font-size:1.5em;
+    font-family:sans-serif;
+    color:blue;
+}
+
+
+
+sections > section > sections > section > sections > section > h{
+    display:block;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    font-size:1.3em;
+    font-family:sans-serif;
+    color:red;
+}
+
+
+p, abstract {
+    margin-top:1em;
+    display:block;
+    font-size:inherit;
+}
+
+abstract {
+    font-style: italic;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+emphasis{
+    display:inline;
+    font-style:italic;
+}
+
+strong{
+    display:inline;
+    font-weight:bold;
+}
+
+normal {
+    font-weight: normal;
+    font-style:normal;
+}
+
+nobr {
+    white-space: nowrap;
+}
+
+link{
+    display:inline;
+    text-decoration:underline;
+    color:blue;
+}
+
+/* TO DO: math should differentiated between inline and display mode */
+math{
+    display:inline;
+    font-family:"Monaco", "Courier", monospace;
+    font-size:1em;
+    color:blue;
+    background-color:#EEE;
+}
+
+code{
+    
+    display:inline;
+    font-family:"Monaco", "Courier", monospace;
+    font-size:1em;
+    font-weight:bold;
+    color:black;
+
+}
+
+code > pre {
+    overflow-x:hidden;
+    counter-increment: codesnippets;
+}
+
+pre {
+    font-family:"Monaco", "Courier", monospace;
+    font-size:1em;
+    font-weight:bold;
+    color:black;
+}
+
+label:before {
+    clear: left;
+    font-family: serif;
+    font-style: italic;
+    color: blue;
+    content: "program " counters(codesnippets, ".") ". ";
+}
+
+label {
+    display: block;
+    font-family: serif;
+    font-style: italic;
+    font-size: 0.8em;
+    color: blue;
+    text-align:center;
+}
+
+sup { 
+  vertical-align: super;
+  font-size: smaller;
+}
+
+sub { 
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+
+
+end:before{
+    color:blue;
+    content:"￭";
+}
+
+margin[position = right]:before{
+    display:inline;
+    content:"[";
+    font-style:normal;
+    font-weight:bold;
+    color:fuchsia;
+}
+
+margin[position = right]:after{
+    display:inline;
+    content:"]>";
+    font-style:normal;
+    font-weight:bold;
+    color:fuchsia;
+}
+
+
+margin[position = left]:before{
+    display:inline;
+    content:"<[";
+    font-style:normal;
+    font-weight:bold;
+    color:red;
+}
+
+margin[position = left]:after{
+    display:inline;
+    content:"]";
+    font-weight:bold;
+    font-style:normal;
+    color:red;
+
+}
+
+margin[position = right]{
+    display:inline;
+    color:fuchsia;
+}
+
+margin[position = left]{
+    display:inline;
+    color:red;
+}
+
+/* ----- lists ------ */
+ul,
+ol{
+    margin-top:1em;
+    display:block;
+    padding-left: 2em;
+    font-size:inherit;
+}
+
+li > ol {
+    margin-top: 0;
+}
+
+li > ul {
+    margin-top: 0;
+}
+
+ol {
+counter-reset: lineitems;
+}
+
+ul > li:before{
+    display:list-item;
+    font-size:inherit;
+    color: blue;
+    content:"￭ ";
+}
+
+ol > li:before{
+    display:inline;
+    font-size:inherit;
+    counter-increment: lineitems;
+    color: blue;
+    content: counters(lineitems,".") ". ";
+}
+
+li{
+    list-style-type: none;
+    display:list-item;
+}
+
+
+img:before {
+    content: "[ fig." counter(images) ". ";
+    color: green
+}
+img:after {
+    content: "]";
+    color: green
+}
+
+img{
+    counter-increment: images;
+    display:block;
+    color:green;
+    font-style:italic;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+blockquote {
+  font-family: serif;
+  font-style: italic;
+  margin: 10% 10%;
+}
+
+p.attribution:before, attribution:before {
+    content:"—" ; /* mdash U+2014. */
+}
+
+p.attribution, attribution {
+  margin: 10% 10% 0;
+  font-style: italic;
+  text-align: right;
+}
+
+blockquote > footer:before{
+    content:"—" ; /* mdash U+2014. */
+}
+
+blockquote > footer {
+  margin: 10% 10% 0;
+  font-style: italic;
+  text-align: right;
+}
+
+
+/* References/Bibliography */
+
+references {
+    display: block;
+    width : 100%;
+    
+}
+
+references:before {
+    display:block;
+    font-family:"Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    font-size:1.7em;
+    font-family:sans-serif;
+    color:green;
+    margin-top:2em;
+    margin-bottom:1em;
+    content : "Bibliografie";
+}
+
+reference {
+    display: inline-block;
+    width : 100%;
+}
+
+reference > citekey {
+    display: inline-block;
+    float: left;
+    width: 15%;
+    font-family: arial, helvetica, sans-serif;
+    color:blue;
+}
+
+authors author {
+    display: inline-block;
+    float:right;
+    text-transform:capitalize;
+    font-variant: small-caps;
+}
+
+reference > authors author + author:before {
+    display: inline-block;
+    float: right;
+    content: ", ";
+}
+
+reference > title {
+    display: inline-block;
+    float: right;
+    font-family : inherit;
+    font-size: inherit;
+    font-style: italic;
+    clear: right;
+}
+
+reference > title:before {
+    content: ", ";
+}
+
+reference > year:before {
+    content : ", ";
+}
+
+reference > publisher name:before {
+    content : ", ";
+}
+
+reference > publisher location:before {
+    content : ", ";
+}
+
+
+/* TO DO:  skip and stop tags */
+skip,
+stop{
+    display:none;
+}
+
+reference:after {
+    content : ".";
+}
+
+
+/* eof(new-blog.twan.com.css */

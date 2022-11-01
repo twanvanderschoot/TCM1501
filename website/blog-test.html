@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title>Test Blog XML</title>
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/blog.twan.com.css">
+   </head>
+   <body>
+      <div id="page">
+         <div id="header"><a href="http://www.twan.com" title="Back to the home page."><img src="images/twan.com-header-50x470.png" alt="TWAN.COM logo"></a></div>
+         <div id="floater-top" title="Back to the home page.">HOME</div>
+         <div id="body">
+            <article>
+               
+               <header>
+                  <h1>Test Blog XML</h1>
+                  <p class="date">2015-06-06</p><a rel="author" href="mailto:twan@twan.com">Twan van der Schoot</a><a rel="affiliation" href="http://www.twan.com">TWAN.COM</a><div class="abstract">Een samenvatting van het hieronder geschrevene.</div>
+               </header>
+               
+               <p> een stuk in leidende tekst</p>
+               
+               <div class="image"><img src="images/50x50.png"><p class="caption">Dit is de caption van het eerste plaatje bij de inleiding</p>
+               </div>
+               
+               <p>Met een plaatje.</p>
+               
+               <sections>
+                  <section>
+                     
+                     <h2>kopje</h2>
+                     
+                     <p>Dit is een <em>stukje</em> na de kop tekst.
+                     </p>
+                     
+                     <p>Dit is een andere paragraaf met daarin een <strong>vet</strong> en een
+                        <em>schuin</em> stukje inline, maar inline programma code
+                        <code xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">while(true){printf(",\n");}</code> of een wiskundige formule 
+                        <div class="mathdisplay">
+                           <p>$$\sum_{i=0}^{10000} \frac{1}{i^2}$$</p>
+                           <p class="equation"></p>
+                        </div>.
+                     </p>
+                     
+                     <p>Dit is een hele nieuwe alinea om het een en ander aan <em>Ronald </em>te
+                        demonstreren.
+                     </p>
+                     
+                     <p>Maar ook een <a href="http://www.twan.com">linkje</a> in de tekst kan.
+                        
+                     </p>
+                     
+                     <div>
+                        <pre class=" prettyprint &#xA;                        linenums=2311">
+class Test:
+    def __init__(self,x):
+        iets =x
+     
+    def actie(self, N):
+        if a=None:
+            a = Test(2)
+            return sum([i^2 for i in range(N)])
+        else:
+            pass
+if __name__ = "__main__":            
+    nieuw = Test(10)
+    print nieuw
+    
+</pre>
+                        <p class="codesnippet">Dit is een stukje voorbeeld code in Python</p>
+                     </div>
+                     
+                     <p>Of een in de linker margin geplaatste 
+                        <margin class="left">links geplaatste marge
+                           tekst. Eventueel met een <a href="http://www.twan.com">linkje</a> maar
+                           geen plaatjes er in. Maar wel formules, zoals 
+                           $x^{2}+y^{2}=z^{2}$
+                           , alleen is de kant lijn te klein voor het
+                           bewijs.
+                        </margin> maar ook een 
+                        <margin class="right"> rechts geplaatste marge
+                           tekst 
+                        </margin> tekst. Dat kan allemaal zonder dat de boel spaak loopt. Als het
+                        goed is blijven zelfs de kantlijnen van de middelste (van de running tekst) kolom,
+                        netjes behouden.
+                     </p>
+                     
+                     <p>Of een lijst:</p>
+                     
+                     <ol>
+                        <li> at als ik nu iets intik</li>
+                        <li>ddasds</li>
+                        <li>Bof</li>
+                        <li> asfsadsd</li>
+                        <li>Plof
+                           <ol>
+                              <li> cool</li>
+                              <li>Dat</li>
+                              <li>gaat</li>
+                              <li>goed</li>
+                           </ol>
+                        </li>
+                        <li>Plof</li>
+                     </ol>
+                     
+                     <p>Hieronder is een stukje pre-formatted text opgenomen. De Oxygen authoring editor laat
+                        het zien zonder tabs en nieuwe regels. Maar in het XML bestand wordt het nog steeds
+                        gehandhaaft.
+                     </p>
+                     <pre>
+Een stukje gepre-
+formatteerde
+    text
+tjeop.
+            </pre>
+                     <sections>
+                        <section>
+                           
+                           <h2>Kop</h2>
+                           
+                           <p>Een paragraaf direct na de kop <code xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Dit is inline een code</code></p>
+                           
+                           <p>Een nieuwe paragraaf.</p>
+                           
+                           <p>Texts</p>
+                           
+                           <sections>
+                              <section>
+                                 
+                                 <h2>Kop</h2>
+                                 
+                                 <div class="image"><img src="images/image.jpg"><p class="caption">Dit is zomaar een kop van "Sargent Pepper's
+                                       Lonely Hearts Club Band, een LP van de Beatles
+                                    </p>
+                                 </div>
+                                 
+                              </section>
+                           </sections>
+                           
+                        </section>
+                     </sections>
+                     
+                  </section>
+                  <section>
+                     
+                     <h2>Nog een kop</h2>
+                     
+                     <p>En nu kunnen we gaan schrijven en nog eens schrijven. Het gaat best aardig zonder
+                        al
+                        te veel geneuzeld.  Oké, ik realiseer me dat iets van voetnoten ook moet kunnen. En
+                        natuurlijk tabellen.
+                     </p>
+                     
+                     <p>Maar misschien is dat een goed idee voor later. Dat kunnen we meteen eens onderzoeken
+                        hoe dat we van die tabellen definitie een include voor de XSD kunnen maken.  
+                     </p>
+                     
+                  </section>
+                  <section>
+                     
+                     <h2>Volgende hoofdstuk</h2>
+                     
+                     <p> Ex adipiscing aliquip dolor, minim lobortis vel duis ex commodo consequatvel,
+                        feugait at, et delenit ut nulla, in consequat crisare. Autem hendrerit et, luptatum
+                        qui, luptatum praesent eu. Dolore erat, facilisis aliquam amet esse, consequatvel
+                        exerci. Feugait consequat enim erat dolore, veniam volutpat velit vero facilisi enim
+                        amet nulla. At, duis erat ut in accumsan, et odio luptatum iriuredolor duis
+                        adipiscing. Suscipit, ea nostrud iusto tincidunt hendrerit lobortis dignissim, ex
+                        adipiscing dolore et in minim esse qui. Ut crisare eros at ullamcorper blandit odio
+                        at ea luptatum nulla, duis quis. 
+                     </p>
+                     
+                     <blockquote>
+                        
+                        <p>risare, iriuredolor delenit eros wisi, nibh eros consequat, in veniam eros exerci
+                           augue? Iriure veniam amet volutpat dignissim autem velit nisl vel amet in
+                           consectetuer. Euismod lobortis et feugait qui suscipit dolore accumsan eros
+                           delenit enim magna ad te autem vel. 
+                           $E=mc^2$
+                           
+                        </p>
+                        Tacitus
+                        
+                     </blockquote>
+                     
+                     <p>risare, iriuredolor delenit eros wisi, nibh eros consequat, in veniam eros exerci
+                        augue? Iriure veniam amet volutpat dignissim autem velit nisl vel amet in
+                        consectetuer. Euismod lobortis et feugait qui suscipit dolore accumsan eros delenit
+                        enim magna ad te autem vel. 
+                     </p>
+                     
+                     <sections>
+                        <section>
+                           
+                           <h2>sub hoofdstuk van het volgende hoofdstuk</h2>
+                           
+                           <p>Nu eens proberen of code blokken goed worden doorgeteld. Dus eerst een code
+                              block:
+                           </p>
+                           
+                           <div><pre class=" prettyprint &#xA;                lang-r&#xA;                    linenums&#xA;                ">for(s in seq_along(sessions)){
+  # r &lt;- value.time(data[data$session==sessions[s], "rr"], 56e-3)
+  ses &lt;- sessions[s]
+  for(l in c(1,2)){
+    d &lt;- data[data$session==ses &amp; data$lap==l,]
+    # Are there enough data points?
+  
+    if(nrow(d)&gt;3){
+      plot(d$time, d$med.rr, type="l", col="blue", xlab="time in s", ylab="RR in ms")
+      title(main=paste("Raw data, session", sessions[s], "lap", l))
+      } else {
+        print(paste("Not enough data points for session", sessions[s], "in lap", l))
+      }
+    
+      with(subset(sessions.annotated, session==ses &amp; lap==l),{
+        print(paste(Beoordeling, "Punten:", bruikbaar))
+      })
+    
+    }
+
+  }</pre><p class="codesnippet">Een
+                                 stukje R code
+                              </p>
+                           </div>
+                           
+                           <p>Cool, copy&amp;paste werkt gewoon <em>met behoud </em>van
+                              whitespace! Helaas is het syntax coloring 
+                              <margin class="right">maar wel
+                                 in html met de nodige mark up en javascript includes.
+                              </margin>in de
+                              Oxygen Authoring editor niet mogelijk .
+                           </p>
+                           
+                        </section>
+                        <section>
+                           
+                           <h2>sub hoofstuk van het volgende hoofdstuk, maar na 3.1</h2>
+                           
+                        </section>
+                     </sections>
+                     
+                  </section>
+                  <section>
+                     
+                     <h2>Laatste hoofdstuk</h2>
+                     
+                     <p>Het laatste hoofdstuk sluiten we af met een plaatje zonder bijschrift, ter
+                        demonstratie:
+                     </p>
+                     
+                     <div class="image"><img src="images/image.jpg"></div>
+                     
+                     <sections>
+                        <section>
+                           
+                           <h2></h2>
+                           
+                        </section>
+                     </sections>
+                     
+                  </section>
+               </sections>
+               
+            </article>
+         </div>
+         <div id="footer" title="To the index.">
+            <div id="floater-mask"></div>
+            <div id="index">INDEX</div>
+         </div>
+         <div id="floater-bottom" title="To the index."></div>
+      </div>
+   </body><script src="scripts/lib/jquery-1.9.1.min.js"></script><script src="scripts/blog.js"></script><script type="text/x-mathjax-config">
+                    MathJax.Hub.Config({
+                    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+                    });
+                </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="scripts/lib/google-code-prettify/run_prettify.js"></script></html>

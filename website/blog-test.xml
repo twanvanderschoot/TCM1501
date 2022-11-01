@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="css/authoring-blog.twan.com.css"?>
+<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="blog.twan.com.xsd">
+    <header>
+        <title>Test Blog XML</title>
+        <author href="twan@twan.com">Twan van der Schoot</author>
+        <affiliation href="http://www.twan.com">TWAN.COM</affiliation>
+        <date>2015-06-06</date>
+        <abstract>Een samenvatting van het hieronder geschrevene.</abstract>
+    </header>
+    <p> een stuk in leidende tekst</p>
+    <img href="images/50x50.png">Dit is de caption van het eerste plaatje bij de inleiding</img>
+    <p>Met een plaatje.</p>
+    <sections>
+        <section>
+            <h>kopje</h>
+            <p>Dit is een <emphasis>stukje</emphasis> na de kop tekst.</p>
+            <p>Dit is een andere paragraaf met daarin een <strong>vet</strong> en een
+                    <emphasis>schuin</emphasis> stukje inline, maar inline programma code
+                    <code>while(true){printf(",\n");}</code> of een wiskundige formule <math
+                    display="display">\sum_{i=0}^{10000} \frac{1}{i^2}</math>.</p>
+            <p>Dit is een hele nieuwe alinea om het een en ander aan <emphasis>Ronald </emphasis>te
+                demonstreren.</p>
+            <p>Maar ook een <link href="http://www.twan.com">linkje</link> in de tekst kan.<end/>
+            </p>
+            <code>
+                <pre fromline="2311" type="code">
+class Test:
+    def __init__(self,x):
+        iets =x
+     
+    def actie(self, N):
+        if a=None:
+            a = Test(2)
+            return sum([i^2 for i in range(N)])
+        else:
+            pass
+if __name__ = "__main__":            
+    nieuw = Test(10)
+    print nieuw
+    
+</pre>
+                <label>Dit is een stukje voorbeeld code in Python</label></code>
+            <p>Of een in de linker margin geplaatste <margin position="left">links geplaatste marge
+                    tekst. Eventueel met een <link href="http://www.twan.com">linkje</link> maar
+                    geen plaatjes er in. Maar wel formules, zoals <math display="inline"
+                        >x^{2}+y^{2}=z^{2}</math>, alleen is de kant lijn te klein voor het
+                    bewijs.</margin> maar ook een <margin position="right"> rechts geplaatste marge
+                    tekst </margin> tekst. Dat kan allemaal zonder dat de boel spaak loopt. Als het
+                goed is blijven zelfs de kantlijnen van de middelste (van de running tekst) kolom,
+                netjes behouden.</p>
+            <p>Of een lijst:</p>
+            <ol>
+                <li> at als ik nu iets intik</li>
+                <li>ddasds</li>
+                <li>Bof</li>
+                <li> asfsadsd</li>
+                <li>Plof<ol>
+                        <li> cool</li>
+                        <li>Dat</li>
+                        <li>gaat</li>
+                        <li>goed</li>
+                    </ol></li>
+                <li>Plof</li>
+            </ol>
+            <p>Hieronder is een stukje pre-formatted text opgenomen. De Oxygen authoring editor laat
+                het zien zonder tabs en nieuwe regels. Maar in het XML bestand wordt het nog steeds
+                gehandhaaft.</p>
+            <pre>
+Een stukje gepre-
+formatteerde
+    text
+tjeop.
+            </pre>
+            <sections>
+                <section>
+                    <h>Kop</h>
+                    <p>Een paragraaf direct na de kop <code>Dit is inline een code</code></p>
+                    <p>Een nieuwe paragraaf.</p>
+                    <p>Texts</p>
+                    <sections>
+                        <section>
+                            <h>Kop</h>
+                            <img href="images/image.jpg">Dit is zomaar een kop van "Sargent Pepper's
+                                Lonely Hearts Club Band, een LP van de Beatles</img>
+                        </section>
+                    </sections>
+                </section>
+            </sections>
+        </section>
+        <section>
+            <h>Nog een kop</h>
+            <p>En nu kunnen we gaan schrijven en nog eens schrijven. Het gaat best aardig zonder al
+                te veel geneuzeld.  Oké, ik realiseer me dat iets van voetnoten ook moet kunnen. En
+                natuurlijk tabellen.</p>
+            <p>Maar misschien is dat een goed idee voor later. Dat kunnen we meteen eens onderzoeken
+                hoe dat we van die tabellen definitie een include voor de XSD kunnen maken.  </p>
+        </section>
+        <section>
+            <h>Volgende hoofdstuk</h>
+            <p> Ex adipiscing aliquip dolor, minim lobortis vel duis ex commodo consequatvel,
+                feugait at, et delenit ut nulla, in consequat crisare. Autem hendrerit et, luptatum
+                qui, luptatum praesent eu. Dolore erat, facilisis aliquam amet esse, consequatvel
+                exerci. Feugait consequat enim erat dolore, veniam volutpat velit vero facilisi enim
+                amet nulla. At, duis erat ut in accumsan, et odio luptatum iriuredolor duis
+                adipiscing. Suscipit, ea nostrud iusto tincidunt hendrerit lobortis dignissim, ex
+                adipiscing dolore et in minim esse qui. Ut crisare eros at ullamcorper blandit odio
+                at ea luptatum nulla, duis quis. </p>
+            <blockquote>
+                <p>risare, iriuredolor delenit eros wisi, nibh eros consequat, in veniam eros exerci
+                    augue? Iriure veniam amet volutpat dignissim autem velit nisl vel amet in
+                    consectetuer. Euismod lobortis et feugait qui suscipit dolore accumsan eros
+                    delenit enim magna ad te autem vel. <math display="inline">E=mc^2</math></p>
+                <attribution>Tacitus</attribution>
+            </blockquote>
+            <p>risare, iriuredolor delenit eros wisi, nibh eros consequat, in veniam eros exerci
+                augue? Iriure veniam amet volutpat dignissim autem velit nisl vel amet in
+                consectetuer. Euismod lobortis et feugait qui suscipit dolore accumsan eros delenit
+                enim magna ad te autem vel. </p>
+            <sections>
+                <section>
+                    <h>sub hoofdstuk van het volgende hoofdstuk</h>
+                    <p>Nu eens proberen of code blokken goed worden doorgeteld. Dus eerst een code
+                        block:</p>
+                    <code><pre language="r" linenums="" type="code">for(s in seq_along(sessions)){
+  # r &lt;- value.time(data[data$session==sessions[s], "rr"], 56e-3)
+  ses &lt;- sessions[s]
+  for(l in c(1,2)){
+    d &lt;- data[data$session==ses &amp; data$lap==l,]
+    # Are there enough data points?
+  
+    if(nrow(d)&gt;3){
+      plot(d$time, d$med.rr, type="l", col="blue", xlab="time in s", ylab="RR in ms")
+      title(main=paste("Raw data, session", sessions[s], "lap", l))
+      } else {
+        print(paste("Not enough data points for session", sessions[s], "in lap", l))
+      }
+    
+      with(subset(sessions.annotated, session==ses &amp; lap==l),{
+        print(paste(Beoordeling, "Punten:", bruikbaar))
+      })
+    
+    }
+
+  }</pre><label>Een
+                            stukje R code</label></code>
+                    <p>Cool, copy&amp;paste werkt gewoon <emphasis>met behoud </emphasis>van
+                        whitespace! Helaas is het syntax coloring <margin position="right">maar wel
+                            in html met de nodige mark up en javascript includes.</margin>in de
+                        Oxygen Authoring editor niet mogelijk .</p>
+                </section>
+                <section>
+                    <h>sub hoofstuk van het volgende hoofdstuk, maar na 3.1</h>
+                </section>
+            </sections>
+        </section>
+        <section>
+            <h>Laatste hoofdstuk</h>
+            <p>Het laatste hoofdstuk sluiten we af met een plaatje zonder bijschrift, ter
+                demonstratie:</p>
+            <img href="images/image.jpg"/>
+            <sections>
+                <section>
+                    <h/>
+                </section>
+            </sections>
+        </section>
+    </sections>
+</article>

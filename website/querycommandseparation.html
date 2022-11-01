@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title>Query Command Separation</title>
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/blog.twan.com.css">
+   </head>
+   <body>
+      <div id="page">
+         <div id="header"><a href="http://www.twan.com" title="Back to the home page."><img src="images/twan.com-header-50x470.png" alt="TWAN.COM logo"></a></div>
+         <div id="floater-top" title="Back to the home page.">HOME</div>
+         <div id="body">
+            <article>
+               
+               <header>
+                  <h1>Query Command Separation</h1>
+                  <p class="date">2016-07-01</p><a rel="author" href="mailto:">Twan van der Schoot</a></header>
+               
+               <sections>
+                  <section>
+                     
+                     <h2>Introduction</h2>
+                     
+                     <p>As of today a lot is written about CQRS-ES as pattern for constructing software, or
+                        <em>Command Query Responsibility Separation - Event Sourcing</em>
+                        and the proposed architectures and patterns are anything but trivial. But the
+                        motivations  behind it are limited to
+                     </p>
+                     
+                  </section>
+                  <section>
+                     
+                     <h2>The origins</h2>
+                     
+                     <p>All introductions to CQRS obligingly refer to Bertand Meyer 
+                        <margin class="left">Meyer 1997</margin> as the father of the idea to divide methods 
+                        <margin class="right">Meyer calls <em>methods</em> "features" as they are
+                           called in  Eiffel.
+                        </margin> into 2 mutually excluding categories:
+                        <em>queries</em> and <em>commands</em>.
+                        <em>Queries</em> are methods which return a result and have no side
+                        effects and are the closest thing to the mathematical  notion of a
+                        <em>function.</em><em>Commands </em>are methods which
+                        don't return a result but do change the state of the object instance and are most
+                        similar to a <em>procedure </em> in a programming language like Pascal
+                        or a void function in C/C++.
+                     </p>
+                     
+                  </section>
+                  <hr>
+               </sections>
+               
+            </article>
+         </div>
+         <div id="footer" title="To the index.">
+            <div id="floater-mask"></div>
+            <div id="index">INDEX</div>
+         </div>
+         <div id="floater-bottom" title="To the index."></div>
+      </div>
+   </body><script src="scripts/lib/jquery-1.9.1.min.js"></script><script src="scripts/blog.js"></script></html>

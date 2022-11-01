@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    vc:maxVersion="1.1" vc:minVersion="1.0" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <xs:annotation>
+        <xs:documentation>Een schema voor blog artikelen.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="article">
+        <xs:annotation>
+            <xs:documentation>Het artikel. Elk bestand kan slechts één artikel bevatten en is tevens het root element (niet enforced, want globale elementen gedefinieerd)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="header"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="p"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="img"/>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="sections"/>
+            </xs:sequence>
+            <xs:attribute name="stylesheet" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>Verwijst naar een project specifiek CSS stylesheet.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="header">
+        <xs:annotation>
+            <xs:documentation>De header bevat alle informatie die bij de titel van het artikel hoort.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>De titel van het artikel. Dit is een verplicht element en kan alleen een string zijn.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" name="subtitle" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Een optionele subtitel die alleen een string kan zijn.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="author">
+                    <xs:annotation>
+                        <xs:documentation>De auteur van het artikel, kan alleen een string zijn en is een verplicht element.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" name="affiliation" type="ContactType"/>
+                <xs:element ref="date">
+                    <xs:annotation>
+                        <xs:documentation>De data van het artikel. Het formaat is YYYY-mm-dd en is verplicht.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" name="abstract" type="paragraphType">
+                    <xs:annotation>
+                        <xs:documentation>Een optionele samenvatting van het artikel.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="section">
+        <xs:annotation>
+            <xs:documentation>Een artikel kan bestaan uit meerdere secties achter elkaar splaatst en in elkaar genest.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="h">
+                    <xs:annotation>
+                        <xs:documentation>De kop van een sectie. Dit is een verplicht element en kan alleen een string zijn. De nummering wordt geregeld in een stylesheet.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element maxOccurs="1" minOccurs="1" ref="p"/>
+                    <xs:element ref="ol"/>
+                    <xs:element ref="img"/>
+                    <xs:element ref="ul"/>
+                    <xs:element ref="code"/>
+                    <xs:element ref="pre"/>
+                    <xs:element ref="blockquote"/>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="sections"/>
+                <xs:element minOccurs="0" name="hr">
+                    <xs:annotation>
+                        <xs:documentation>Een optionele horizontale lijn die het einde van een sectie markeert.  In de praktijk zal het aanpassen van de CSS beter werken.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:length fixed="true" value="0"/>
+                            <xs:whiteSpace fixed="true" value="collapse"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="p" type="paragraphType">
+        <xs:annotation>
+            <xs:documentation>Een alinea.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType mixed="true" name="paragraphType">
+        <xs:sequence>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="inline"/>
+            <xs:element minOccurs="0" name="end">
+                <xs:annotation>
+                    <xs:documentation>Dit is een optionele marker die het einde van een alinea aangeeft. De grafische representatie is gedefineerd in een stylesheet.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="noindent"/>
+    </xs:complexType>
+    <xs:element name="ul">
+        <xs:annotation>
+            <xs:documentation>Een (ongenummerde) bulletlist.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="li"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ol">
+        <xs:annotation>
+            <xs:documentation>Een genummerde lijst.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="li"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="inline">
+        <xs:annotation>
+            <xs:documentation>De groep bevat verwijzing naar alle inline elementen in een artikel
+                die in een alinea (of soortgelijk) element kunnen voorkomen.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="strong"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="emphasis"/>
+            <xs:element minOccurs="0" ref="normal"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="link"/>
+            <xs:element minOccurs="0" name="nobr" type="paragraphType">
+                <xs:annotation>
+                    <xs:documentation>Omsluit tekst die niet over verschillende regels opgesplitst mag worden.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="ul" minOccurs="0"/>
+            <xs:element ref="ol" minOccurs="0"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="margin"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="math"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="code"/>
+            <xs:element minOccurs="0" ref="span" maxOccurs="unbounded"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="cite"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="sub"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="sup"/>
+        </xs:choice>
+    </xs:group>
+    <xs:element name="blockquote">
+        <xs:annotation>
+            <xs:documentation>Een blockquote bevat aanhaling uit één of meerdere alinea's en kan worden afgesloten met een "attribution".</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="p"/>
+                <xs:element minOccurs="0" name="attribution" type="paragraphType">
+                    <xs:annotation>
+                        <xs:documentation>Naam en/of bron van de aanhaling in deze blockquote.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="strong">
+        <xs:annotation>
+            <xs:documentation>Sterk benadrukte tekst (vetgedrukt)
+</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="emphasis">
+        <xs:annotation>
+            <xs:documentation>Benadrukte tekst (schuingedrukt).</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="code">
+        <xs:annotation>
+            <xs:documentation>Pogramma code. Optioneel kan ook de programmeertaal en het bijbehorende (indien aanwezig) kleurenschema in attributen worden meegegeven.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0">
+                <xs:element ref="pre"/>
+                <xs:element name="label">
+                    <xs:complexType mixed="true"/>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="language"/>
+            <xs:attribute name="scheme"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="math">
+        <xs:annotation>
+            <xs:documentation>Een MathJAX expressie.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:attribute name="display" default="inline" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Dit attribuut geeft aan hoe een formule getoond moet worden.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="inline"/>
+                        <xs:enumeration value="display"/>
+                        <xs:enumeration value="hidden"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="link">
+        <xs:annotation>
+            <xs:documentation>Een link naar een URL met omsloten tekst.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:attribute name="href" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>Een URL of "in document" URI voor deze HTTP/THTML link.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="h">
+        <xs:annotation>
+            <xs:documentation>De kop van een sectie. Een kop is verplicht en kan alleen een string zijn.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="span"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="author" type="ContactType" nillable="false">
+        <xs:annotation>
+            <xs:documentation>De auteur van het artikel. De auteur is een verplicht en kan alleen een string zijn.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="date" type="xs:date">
+        <xs:annotation>
+            <xs:documentation>De datum van het artikel. De datum heeft als formaat JJJJ-MM-DD en is verplicht.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="li">
+        <xs:annotation>
+            <xs:documentation>Een item in een ordered of unordered list.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="p"/>
+                <xs:group maxOccurs="unbounded" minOccurs="0" ref="inline"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="img">
+        <xs:complexType mixed="true">
+            <xs:attribute name="href" type="xs:anyURI" use="required"/>
+            <xs:attribute name="height" type="xs:nonNegativeInteger"/>
+            <xs:attribute name="width" type="xs:nonNegativeInteger"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="skip">
+        <xs:complexType>
+            <xs:attribute name="to" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="stop">
+        <xs:complexType>
+            <xs:attribute name="here" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="margin">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="paragraphType">
+                    <xs:attribute name="position">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="left"/>
+                                <xs:enumeration value="right"/>
+                                <xs:enumeration value="hidden"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sections">
+        <xs:annotation>
+            <xs:documentation>Dit element bevat uitsluitend section-elementen. Dit element is toegevoegd om gebruik te kunnen maken van geneste counters in css.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element maxOccurs="unbounded" ref="section"/>
+                <xs:element minOccurs="0" name="references">
+                    <xs:annotation>
+                        <xs:documentation>De bibliografie.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="p"/>
+                            <xs:element maxOccurs="unbounded" name="reference">
+                                <xs:annotation>
+                                    <xs:documentation>Bibliografische informatie voor een een verwijzing.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="citekey">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="id"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="authors">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" ref="author"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="title" type="paragraphType"/>
+                                        <xs:element minOccurs="0" name="publication">
+                                            <xs:annotation>
+                                                <xs:documentation>De naam van de publicatie, zeg een tijdschrift, journal, krant, boek (als 't gaat om een hoofdstuk), proceedings etc.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="pages"/>
+                                        <xs:element minOccurs="0" name="publisher">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="name"/>
+                                                  <xs:element name="location"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="year" type="xs:gYear"/>
+                                        <xs:element name="isbn" minOccurs="0"/>
+                                        <xs:element minOccurs="0" ref="link"/>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0" ref="p"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" type="xs:anyURI">
+                                        <xs:annotation>
+                                            <xs:documentation>Dit attribuut wordt elders gebruikt om naar deze referentie te verwijzen.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType mixed="false" name="ContactType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="href" type="xs:anyURI">
+                    <xs:annotation>
+                        <xs:documentation>Bevat het e-mail adres.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:element name="pre">
+        <xs:complexType mixed="true">
+            <xs:attribute name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="code"/>
+                        <xs:enumeration value="text"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="language" type="xs:string"/>
+            <xs:attribute name="fromline" type="xs:positiveInteger"/>
+            <xs:attribute name="linenums"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="span">
+        <xs:annotation>
+            <xs:documentation>Dit element is een kopie van het HTML5 span-element met een style-attribuut. Het is bedoeld om ad hoc styling mogelijk te maken.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:attribute name="class" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="normal">
+        <xs:annotation>
+            <xs:documentation>Maak tekst in een strong of emphesised tekst "gewoon".</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="cite" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>De titel van een werk.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

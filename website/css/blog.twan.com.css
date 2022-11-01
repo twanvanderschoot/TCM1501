@@ -1,0 +1,419 @@
+@charset "UTF-8";
+/*
+ * TO DO:
+ * div#floater-top background URL corrigeren voor uitrol.
+ * <h3> style opruimen ?
+ * tellen van (display) equations
+ * voetnoten
+ */
+html {
+  height: 100%;
+  /* So we can "glue" to footer to the bottom of the page */
+  width: 100%; }
+  html body {
+    font-family: "Georgia";
+    font-weight: 100;
+    color: green; }
+
+div#page {
+  height: 100%;
+  width: 100%; }
+
+div#header {
+  width: 100%;
+  /*	heigth: 50px;
+      min-height: 50px !important;
+  */
+  background-color: #4e4cfa; }
+
+div#body {
+  /* Dit werkt niet zo goed op een iPhone: */
+  /*  width: 80%;
+    margin: 0 auto;*/
+  width: 100%; }
+
+div.abstract {
+  text-align: justify;
+  display: block;
+  width: 60%;
+  margin: 50px auto;
+  font-style: italic; }
+
+section, sections {
+  display: block; }
+
+sections {
+  counter-reset: section; }
+
+section {
+  counter-increment: section; }
+
+h1 {
+  text-align: left;
+  font-family: "Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+  color: #2003a0;
+  font-size: 2.2em;
+  font-weight: 500;
+  color: #2003a0;
+  margin-bottom: 2em; }
+
+h2:before {
+  color: #2003a0;
+  content: counters(section,".") " "; }
+
+h2 {
+  text-align: left;
+  font-family: "Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+  color: #2003a0;
+  font-size: 1.6em;
+  color: #2003a0;
+  margin-top: 1.1em;
+  margin-bottom: 0.5em; }
+
+h3:before {
+  color: #2003a0;
+  content: counters(section,".") " "; }
+
+h3 {
+  text-align: left;
+  font-family: "Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+  color: #2003a0;
+  font-size: 1.4em;
+  color: #2003a0;
+  margin-top: 0.9em;
+  margin-bottom: 0.5em; }
+
+header {
+  text-align: right;
+  margin-top: 17ex;
+  margin-bottom: 2em; }
+  header h1 {
+    text-align: left;
+    font-family: "Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+    color: #2003a0;
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-bottom: 7ex;
+    line-height: 0.8em; }
+  header p.date {
+    font-size: 1em;
+    color: #2003a0; }
+  header a[rel=author] {
+    display: block;
+    font-family: "Georgia";
+    font-weight: 70;
+    color: green;
+    font-size: 1.1em; }
+  header a[rel=affiliation] {
+    display: block;
+    font-family: "Georgia";
+    font-weight: 70;
+    color: green;
+    font-size: 1.1em; }
+
+em {
+  font-style: italic; }
+
+p + p {
+  text-indent: 2em; }
+
+p + p.noindent {
+  text-indent: 0; }
+
+strong {
+  font-weight: 700; }
+
+.normal {
+  font-weight: normal;
+  font-style: normal; }
+  
+sup { 
+  vertical-align: super;
+  font-size: smaller;
+} 
+
+sub { 
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+p.attribution + p {
+  text-indent: 0; }
+
+blockquote {
+  font-family: "Gill Sans", Georgia, serif;
+  font-style: italic;
+  margin: 1.1em 4em 0; }
+
+p.attribution:before, attribution:before {
+  content: "— ";
+  /* mdash U+2014 */ }
+
+p.attribution, attribution {
+  margin: 0 4em 1.1em;
+  font-style: italic;
+  text-align: right; }
+
+blockquote > footer:before {
+  content: "— ";
+  /* mdash U+2014 */ }
+
+blockquote > footer {
+  margin: 0 0 1.1em auto;
+  font-style: italic;
+  text-align: right; }
+
+article {
+  display: block;
+  width: 67%;
+  margin: 50px auto 50px;
+  font-family: "Georgia";
+  font-weight: 70;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  text-align: justify;
+  color: #3c3c3c;
+  counter-reset: images;
+  counter-reset: codesnippets; }
+
+skip, stop {
+  display: none; }
+
+margin {
+  text-indent: 0;
+  display: inline-block;
+  position: absolute;
+  width: 13.5%;
+  max-width: 13.5%;
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+  font-size: 0.8em;
+  color: rgba(32, 3, 160, 0.9); }
+  margin.left {
+    left: 0;
+    text-align: left;
+    margin-left: 1em;
+    padding-right: 0; }
+  margin.right {
+    right: 0;
+    text-align: right;
+    margin-right: 1em;
+    padding-left: 0; }
+
+end {
+  display: inline;
+  min-height: 1ex;
+  min-width: 1em;
+  background-color: #c0ecfb;
+  color: #2003a0; }
+  end:after {
+    float: right;
+    content: "█"; }
+
+a {
+  font-family: "Gill Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+  text-decoration: none;
+  color: rgba(32, 3, 160, 0.9); }
+  a:active {
+    color: rgba(32, 3, 160, 0.9);
+    text-decoration: none; }
+  a:hover {
+    color: rgba(204, 0, 0, 0.8); }
+
+p.math {
+  display: inline; }
+
+div.mathdisplay {
+  width: 33%;
+  margin: auto; }
+
+.MathJax_Display {
+  text-align: left !important;
+  display: inline !important; }
+
+div.image {
+  margin-bottom: 0.5em;
+  counter-increment: images; }
+
+img {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8em; }
+
+img + p.caption:before {
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+  color: #2003a0;
+  content: "fig " counter(images) ". "; }
+
+img + p.caption {
+  display: block;
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+  color: #2003a0;
+  text-align: center;
+  font-size: 0.8em; }
+
+div#page div#header a img {
+  display: inline;
+  margin: 0; }
+
+section > pre {
+  font-family: "Menlo", "Courier New", Courier, monospace;
+  font-size: 0.9em; }
+
+p > code {
+  font-family: "Menlo", "Courier New", Courier, monospace;
+  font-size: 0.9em; }
+
+pre {
+  font-family: "Menlo", "Courier New", Courier, monospace;
+  font-size: 0.9em; }
+
+div pre {
+  overflow-x: auto; }
+
+pre.prettyprint {
+  counter-increment: codesnippets;
+  margin-top: 1em;
+  margin-bottom: 0.5em; }
+
+pre + p.codesnippet:before {
+  color: #2003a0;
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+  content: "program " counters(codesnippets,".") ". "; }
+
+p.codesnippet {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+  text-align: center;
+  font-size: 0.8em;
+  color: #2003a0; }
+
+ul,
+ol {
+  margin-top: 1em;
+  display: block;
+  padding-left: 2em;
+  font-size: inherit; }
+
+li > ol {
+  margin-top: 0; }
+
+li > ul {
+  margin-top: 0; }
+
+ol {
+  counter-reset: lineitems; }
+
+ul > li:before {
+  display: list-item;
+  font-size: inherit;
+  color: #2003a0;
+  content: "￭ "; }
+
+ol > li:before {
+  display: inline;
+  font-size: inherit;
+  color: #2003a0;
+  counter-increment: lineitems;
+  content: counters(lineitems,".") ". "; }
+
+li {
+  list-style-type: none;
+  display: list-item; }
+
+dt {
+  display: inline-block;
+  font-family: "Gill Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+  text-decoration: none;
+  width: 20%;
+  float: left;
+  clear: both;
+  color: rgba(32, 3, 160, 0.9); }
+
+dd {
+  display: inline-block;
+  width: 80%;
+  float: left; }
+  dd authors {
+    text-transform: capitalize;
+    font-variant: small-caps; }
+  dd cite {
+    font-style: italic; }
+
+dd:after {
+  content: "."; }
+
+div#footer {
+  width: 100%;
+  height: 50px;
+  margin-top: 10em;
+  background-color: #c0ecfb;
+  opacity: 0.8; }
+
+div#floater-top {
+  display: block;
+  position: fixed !important;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  background-image: url("file:///Users/twan/projecten/TWAN.COM/TCM/TCM1501/website/images/50x50.png");
+  background-repeat: no-repeat;
+  background-size: 51px 51px;
+  font-family: "Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 45px;
+  text-align: center;
+  overflow: hidden;
+  color: transparent;
+  opacity: 0.8; }
+
+div#floater-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #c0ecfb;
+  font-family: "Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 45px;
+  text-align: center;
+  color: #c0ecfb;
+  opacity: 0.8; }
+
+div#index {
+  float: right;
+  font-family: "Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 45px;
+  margin-top: 2px; }
+
+div#index-menu {
+  float: right;
+  height: 0;
+  width: 0;
+  background-color: #c0ecfb; }
+
+div#floater-mask {
+  float: right;
+  background-color: white;
+  width: 50px;
+  height: 50px; }
+
+/*# sourceMappingURL=blog.twan.com.css.map */

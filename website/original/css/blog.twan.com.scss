@@ -1,0 +1,307 @@
+$banner-background-color: #4e4cfa;
+$floater-color: rgb(192, 236, 251);
+$header-text-color: rgb(32, 03, 160);
+$accented-text-color: rgba(32, 03, 160, 0.9);
+$running-text-color: rgb(60, 60, 60);
+$anchor-text-hover-color: rgba(204, 0, 0, 0.8);
+$running-text-width: 67%;
+$gutter-width: 3%;
+$margin-text-width: ((100% - $running-text-width) - (2 * $gutter-width)) / 2;
+$logo-block-width: 50px;
+$logo-block-height: 50px;
+
+@mixin header-text-font {
+  font-family: "Gill Sans", "Helvetica Neue", "Arial", sans-serif;
+  color: $header-text-color;
+}
+
+@mixin running-text-font {
+  font-family: Georgia;
+}
+
+@mixin italic-text-font {
+  font-family: "Gills Sans", Georgia;
+  font-style: italic;
+}
+
+@mixin source-code-font {
+  font-family: "Menlo", "Courier New", Courier, monospace;
+}
+
+@mixin link-text-font {
+  font-family: "Gill Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+  text-decoration: none;
+}
+
+@mixin logo-block-geom {
+  width:  $logo-block-width;
+  height:  $logo-block-height;
+}
+
+//--- basic page layout -----------------------------------
+html {
+  height: 100%;
+  width: 100%;
+
+
+
+  body {
+    @include running-text-font;
+  }
+
+}
+
+div#page {
+  height: 100%;
+  width: 100%;
+}
+
+div#header {
+  width: 100%;
+  /*	heigth: 50px;
+      min-height: 50px !important;
+  */
+  background-color: $banner-background-color;
+}
+
+div#body{
+ // border: 1px red dashed;
+  height: 100%;
+
+/* Dit werkt niet zo goed op een iPhone: */
+/*  width: 80%;
+  margin: 0 auto;*/
+
+  width: 100%;
+}
+
+//--
+
+h1 {
+  text-align: left;
+  @include header-text-font;
+  font-size: 2.2em;
+  font-weight: 500;
+  color: $header-text-color;
+  margin-bottom: 2em;
+}
+
+h2 {
+  text-align: left;
+  @include header-text-font;
+  font-size: 1.6em;
+  color: $header-text-color;
+  margin-top: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  text-align: left;
+  @include header-text-font;
+  font-size: 1.4em;
+  color: $header-text-color;
+  margin-top: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+
+//---- article(!) header ----------------------------------
+header {
+  text-align: right;
+  margin-top: 17ex;
+  margin-bottom: 2em;
+  h1 {
+    text-align: left;
+    @include header-text-font;
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-bottom: 7ex;
+    line-height: 0.8em;
+  }
+
+  p.date {
+    font-size: 1em;
+    color: $header-text-color;
+  }
+
+  a[rel=author]{
+    @include running-text-font;
+    font-size: 1.1em;
+  }
+
+}
+//--
+
+em {
+  font-style: italic;
+}
+
+p + p {
+  text-indent: 2em;
+}
+
+p.attribution + p {
+  text-indent: 0;
+}
+
+//---- quotes ---------------------------------------------
+$blockquote-margin-tb: 1.1em;
+$blockquote-margin-lr: 4em;
+blockquote {
+  font-family: "Gill Sans", Georgia, serif;
+  font-style: italic;
+  margin: $blockquote-margin-tb $blockquote-margin-lr 0;
+}
+
+p.attribution {
+  margin: 0 $blockquote-margin-lr $blockquote-margin-tb;
+  font-style: italic;
+  text-align: right;
+}
+//--
+
+
+article {
+  width: 67%;
+  margin: 50px auto 50px;
+  font-family: "Georgia";
+  font-size: 1.2em;
+  line-height: 1.6em;
+  text-align: justify;
+  color: $running-text-color;
+}
+
+
+skip, stop {
+  display: none;
+}
+
+margin {
+  // TO DO: vervang <margin> door <span class="margin"> als de XSLT klaar is.
+
+  text-indent: 0;
+  display: inline-block;
+  position: absolute;
+  width: $margin-text-width;
+  max-width: $margin-text-width; // !important;
+  @include italic-text-font;
+  font-size: 0.8em;
+  color: rgba(32, 03, 160, 0.9);
+
+  &.left {
+    left: 0;
+    text-align: left;
+    margin-left: 1em;
+    padding-right: 0;
+  }
+
+  &.right {
+    right: 0;
+    text-align: right;
+    margin-right: 1em;
+    padding-left: 0;
+  }
+}
+
+
+end {
+  // display: block;  // Interessant verschil tussen block en inline.
+  display: inline;
+  min-heigth: 1ex;
+  min-width: 1em;
+  background-color: $floater-color;
+  color: $header-text-color;
+  &:after {
+    float: right;
+    content: "█";  //TO DO: replace by "css only" icon.
+    }
+}
+
+a {
+  @include link-text-font;
+  color: $accented-text-color;
+
+  &:active {
+    color: $accented-text-color;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $anchor-text-hover-color;
+  }
+}
+
+pre.code {
+  @include source-code-font;
+
+}
+
+//--- FOOTER ----------------------------------------------
+
+div#footer {
+  width: 100%;
+  height: $logo-block-height;
+  margin-top: 10em;
+  background-color: $floater-color;
+  opacity: 0.8;
+
+}
+
+div#floater-top {
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top:0;
+  @include logo-block-geom;
+  background-image: url(/images/50x50.png);
+  background-repeat: no-repeat;
+  background-size: $logo-block-height+1px $logo-block-width+1px;
+}
+
+div#floater-bottom {
+  position: fixed;
+  right: 0;
+  bottom:0;
+  @include logo-block-geom;
+  background-color: $floater-color;
+  opacity: 0.8;
+
+&.expanded {
+    transition: width 1s, height 1s;
+    -webkit-transition: width 1s, height 1s;
+    -moz-transition: width 1s, height 1s;
+    height: 200px;
+    width: 200px;
+    min-width:0;
+    min-height:0;
+  }
+
+}
+
+div#index {
+  float: right;
+  font-family: "Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 2px;
+  font-size: 45px;
+
+  color: rgba(255,255,255,0.5);
+}
+
+div#index-menu {
+  float: right;
+  height: 0;
+  width: 0;
+  background-color: $floater-color;
+
+
+}
+
+div#floater-mask {
+  float: right;
+  background-color: white;
+  @include logo-block-geom;
+}
+//--
+
+//eof(blog.twan.com.scss).

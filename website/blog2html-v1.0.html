@@ -1,0 +1,597 @@
+
+
+
+
+Created on: Jun 6, 2015
+Author:Twan van der Schoot
+AffiliationTWAN.COM
+
+
+
+
+
+
+
+
+
+
+ article 
+
+
+&lt;!DOCTYPE html&gt;
+
+
+
+
+
+
+<a href="css/reset.css"></a>
+<a href="css/blog.twan.com.css"></a>
+
+
+stylesheet
+css/
+
+
+
+
+
+
+
+<div class="image"><img src=""></div>
+
+
+HOME
+
+<!DOCTYPE html><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title></title>
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/blog.twan.com.css">
+   </head>
+   <body>
+      <div id="page">
+         <div id="header"><a href="http://www.twan.com" title="Back to the home page."><img src="images/twan.com-header-50x470.png" alt="TWAN.COM logo"></a></div>
+         <div id="floater-top" title="Back to the home page.">HOME</div>
+         <div id="body">
+            <article>
+               
+               </article>
+         </div>
+         <div id="footer" title="To the index.">
+            <div id="floater-mask"></div>
+            <div id="index">INDEX</div>
+         </div>
+         <div id="floater-bottom" title="To the index."></div>
+      </div>
+   </body><script src="scripts/lib/jquery-1.9.1.min.js"></script><script src="scripts/blog.js"></script></html>
+
+
+
+
+INDEX
+
+
+
+
+
+
+
+
+MathJax.Hub.Config({
+jax : ["output/HTML-CSS"], // To prevent centering of equations in align-environment.
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+TeX: { equationNumbers: { autoNumber: "AMS" } } 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ section and sections 
+
+
+<sections>
+   <hr>
+</sections>
+
+
+
+
+
+
+<section>
+   
+   </section>
+
+
+
+
+
+
+<hr>
+
+
+
+
+ header 
+
+
+<header>
+   <h1></h1>
+   <p class="date"></p>
+</header>
+
+
+
+
+
+
+
+author
+mailto:
+
+
+
+
+
+
+
+
+
+affiliation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+noindent
+
+    
+
+
+
+
+
+
+ miscellanneous inline mark-yp 
+
+
+
+
+
+
+
+
+
+
+
+<strong>
+   
+   </strong>
+
+
+
+
+
+
+
+nobr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+subscript
+
+
+
+
+
+
+
+
+superscript
+
+
+
+
+
+
+
+
+
+
+
+<span class="normal">
+   
+   </span>
+
+
+ 
+
+
+
+ We want 'inline' as the default format for math formula's 
+
+\(\)
+
+
+
+ $...$ zet spaties voor en na de gerenderde expressie [CDATA[$]]&gt;&lt;xsl:value-of select="."/&gt;&lt;![CDATA[$]]
+
+
+\(/)
+
+
+
+
+
+
+mathdisplay
+<p>$$$$</p>
+<p>
+   
+   </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    &lt;xsl:template match="margin"&gt;
+&lt;xsl:element name="margin" xml:space="default"&gt;
+&lt;xsl:attribute name="class"&gt;
+&lt;xsl:value-of select="attribute::position"/&gt;
+&lt;/xsl:attribute&gt;
+&lt;xsl:apply-templates/&gt;
+&lt;/xsl:element&gt;
+&lt;/xsl:template&gt;
+
+System ID: /Users/twan/projecten/TWAN.COM/TCM/TCM1501/website/blog2html-v1.0.xsl
+Scenario: blog2html-v1.0
+XML file: /Users/twan/projecten/TWAN.COM/TCM/TCM1501/website/blog-test.xml
+XSL file: /Users/twan/projecten/TWAN.COM/TCM/TCM1501/website/blog2html-v1.0.xsl
+Engine name: Saxon6.5.5
+Severity: warning
+Description: Cannot write an attribute node when no element start tag is open
+Start location: 141:0
+
+Hoe los je dat op?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ lists: ordered (ol), unordered (ul) and items (li) 
+
+
+<ol></ol>
+
+
+
+
+
+
+<ul></ul>
+
+
+
+
+
+
+<li>
+   
+   </li>
+
+
+
+
+
+ code and pre(-formatted) text 
+
+
+<pre><xsl:copy-of xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="child::node()" xml:space="preserve"/></pre>
+
+
+
+
+
+
+
+ prettyprint 
+lang-
+
+
+linenums
+
+
+
+linenums=
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+   
+   </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ image 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+   
+   </p>
+
+
+
+
+
+
+Create a link to the entry in references with a corresponding citekey.
+
+
+
+
+#
+
+
+
+
+
+
+ blockquote and attribution 
+
+
+<blockquote>
+   
+   </blockquote>
+
+
+
+
+
+
+<footer>
+   
+   </footer>
+
+
+
+
+
+
+  References/Bibliography 
+
+
+
+bibliography
+references
+Bibliografie
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ and 
+, 
+
+
+
+
+
+
+
+
+<a href="#"></a>
+
+
+
+
+
+, 
+
+
+
+
+
+
+, 
+publication
+
+
+
+
+
+
+
+, 
+pages
+pp. 
+
+
+
+
+
+
+
+, 
+name
+
+, 
+location
+
+
+
+
+
+
+
+, 
+isbn
+
+       
+
+
+

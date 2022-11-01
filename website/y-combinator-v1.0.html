@@ -1,0 +1,383 @@
+<!DOCTYPE html><!DOCTYPE HTML><html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title>De Y-combinator</title>
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/blog.twan.com.css">
+      <link rel="stylesheet" href="css/y-combinator.css">
+   </head>
+   <body>
+      <div id="page">
+         <div id="header"><a href="http://www.twan.com" title="Back to the home page."><img src="images/twan.com-header-50x470.png" alt="TWAN.COM logo"></a></div>
+         <div id="floater-top" title="Back to the home page.">HOME</div>
+         <div id="body">
+            <article>
+               
+               <header>
+                  <h1>De Y-combinator</h1>
+                  <p class="date">2013-05-12</p><a rel="author" href="mailto:">Twan van der Schoot</a><div class="abstract">We presenteren hier een intuïtieve ontwikkeling van een lambda uitdrukking voor de
+                     roemruchte <span class="Y">-combinator</span>. Daarbij proberen we zo min mogelijk
+                     <span class="normal">konijnen uit de hoed te toveren</span>.</div>
+               </header>
+               
+               <sections>
+                  <section>
+                     
+                     <h2>Inleiding</h2>
+                     
+                     <p>De <span class="Y">-combinator</span> heeft ten onrechte de naam ondoorgrondelijk te
+                        zijn. Het mag dan wel zo zijn dat uit een formele toepassing van combinatorische
+                        logica en lambda calculus de <span class="Y">-combinator</span> logisch zou volgen,
+                        in deze presentatie wordt de bijbehorende lambda-uitdrukking via een
+                        <em>intuïtieve</em> aanpak met niets anders dan het basisgereedschap
+                        uit de lambda calculus ontwikkeld. </p>
+                     
+                     <p>De aanpak hier is geïnspireerd door Friedman.
+                        <margin class="right"><a href="#Friedman96">Friedman96</a> pp 160-171.</margin> Daar wordt de <span class="Y">-combinator</span> ontwikkeld als een concreet voorbeeld van een recursieve
+                        functie in Scheme.
+                        <margin class="left"><a href="#scheme">scheme</a></margin>. Jammer
+                        genoeg wordt de essentie van de aanpak vertroebeld door details nodig in een
+                        concreet voorbeeld en de uitwerking ervan in Scheme. Het eindresultaat is dan een
+                        Scheme functie die zich als een <span class="Y">-combinator</span> gedraagt. Maar
+                        dat resultaat laat de <span class="Y">-combinator</span> niet in zijn algemeenheid
+                        zien.</p>
+                     
+                     <p>In plaats daarvan kies ik hier als startpunt een zo eenvoudig mogelijke recursieve
+                        uitdrukking in de lambda calculus. Daarmee omzeilen we de extra complexiteit van
+                        implementatie details van een concreet voorbeeld in een programmeertaal. Dan blijkt
+                        een intuïtief begrip van de lambda uitdrukking voor de <span class="Y">-combinator</span> niet zo moeilijk meer te zijn.</p>
+                     
+                     <p>In een tweede deel besluit ik met een onderzoek naar de
+                        <em>complicaties</em> en oplossingen daarvan bij de implementatie
+                        van de <span class="Y">-combinator</span> lambda uitdrukking in een concrete
+                        programmeertaal.</p>
+                     </section>
+                  <section>
+                     
+                     <h2>Lambda calculus</h2>
+                     
+                     <p>Het is niet de bedoeling om een introductie te geven in de lambda calculus. Er
+                        zijn auteurs 
+                        <margin class="right">Zie ook de <a href="#references">bibliografie</a></margin>die dat veel beter doen dan ik ooit zou
+                        kunnen. Deze sectie heeft alleen als doel een aantal details te belichten
+                        waaraan in andere teksten iets te makkelijk voorbij wordt gegaan. Verder gaan we
+                        ervan uit dat de problematiek rondom vrije variabelen, substitutie en
+                        <em>name catching</em> genoegzaam bekend zijn. We volgen hier de
+                        notatie van Stoy.
+                        <margin class="left"><a href="#Stoy77">Stoy77</a></margin>
+                     </p>
+                     
+                     <p>Met \(\lambda x.M\) een lambda-expressie, noemen we \(M\) ook
+                        wel de body van de lambda-expressie. We kennen
+                        <span class="nobr">\(\alpha\)-congruentie</span>, oftewel gelijkheid tussen twee
+                        lambda-expressies op de namen van de gebonden variabelen na: \(\lambda x.\lambda
+                        y.yx\equiv_{\alpha}\lambda a.\lambda b.ba\), met andere woorden, mits
+                        consequent, kun je de namen van de argumenten veranderen zonder dat de waarde,
+                        uitgedrukt door de lambda-expressie, wijzigt. De \(\beta\)-reductie,
+                        oftewel het toepassen van een lambda-expressie op een argument, komt neer op de
+                        substitutie van de gebonden variabele in de body van een lambda expressie door een
+                        argument: (\(\lambda x.M)E\stackrel{\beta}{\rightarrow}M[x:=E]\)
+                        <margin class="right">De formele theorie blijk weerbarstiger. In een eerdere druk van
+                           <a href="#Hindley86">Hindley86</a> bleken er fouten in de regels voor substitutie te staan.
+                           En ook andere auteurs hebben fouten gemaakt bij de formalisatie van
+                           substitutie.</margin>. In de praktijk is dat niets anders dan netjes de
+                        lambda-expressie als functie op het argument toepassen . De \(\eta\)-regel
+                        stelt dat als <span class="nobr">\(x\notin FV(M)\),</span> dan \(\lambda
+                        x.Mx\stackrel{\eta}{\rightarrow}M\), oftewel als \(x\) niet in de
+                        body \(M\) voorkomt, \(x\) als argument wordt genegeerd.</p>
+                     
+                     <p>Een demonstratie: met \(a\) , \(b\) en \(c\) vrije
+                        variabelen en \(\lambda x.\lambda y.\lambda z.xyz\) een lambda-expressie.
+                        De structuur van deze lambda-expressie is expliciet \(\lambda x.(\lambda
+                        y.(\lambda z.xyz))\) . De toepassing van deze expressie, via meerdere<span class="nobr">
+                           \(\beta\)-reducties</span>, op \(abc\) wordt als volgt
+                        geëvalueerd:</p>
+                     
+                     <p>
+                        
+                        <div class="mathdisplay">
+                           <p>$$\begin{align*} &amp;(\lambda x.(\lambda y.(\lambda
+                              z.xyz)))\,abc\\ = &amp;\text{\{ Impliciete toepassing expliciet maken \}}\\
+                              &amp;(((\lambda x.(\lambda y.(\lambda z.xyz)))\,a)\,b)\,c\\ = &amp;\text{\{
+                              $\beta$-reductie, substitutie van $x$ door $a$ : $x\,:=a$ \}}\\
+                              &amp;((\lambda y.(\lambda z.ayz))\,b)\,c\\ = &amp;\{\text{ $\beta$-reductie
+                              met $y\,:=b$} \}\\ &amp;(\lambda z.abz)\,c\\ = &amp;\text{\{
+                              $\beta$-reductie met $z\,:=c$ \}}\\ &amp;abc\\ \boxed{}
+                              \end{align*}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Bovenstaande illustreert slechts de impliciete volgorde waarin
+                        functie toepassing en \(\beta\)-reductie plaats vinden in
+                        \((\lambda x \lambda y \lambda z . xyz)\,abc\).</p>
+                     
+                     <p>Met \(\lambda x.M\) een lambda-expressie, noemen we \(M\) ook
+                        wel de <em>body</em> van de lambda-expressie. We kennen
+                        \(\alpha\)-reductie oftewel gelijkheid tussen twee lambda-expressie op
+                        de namen van de <em>gebonden</em> variabelen na: \(\lambda x \lambda
+                        y.yx \equiv_{\alpha} \lambda a \lambda b.ba\). De
+                        \(\beta\)-reductie, oftewel het <em>toepassen</em> van een
+                        lambda-expressie op een argument. Hetgeen neerkomt op de substitutie van de
+                        <em>gebonden</em> variabele door de expressie meegegeven in het
+                        argument in de body van de lambda-expressie: \((\lambda x.M)\,E
+                        \stackrel{\beta}{\rightarrow} M[x := E]\). In de praktijk is dat niets
+                        anders dan <em>netjes</em> de lambda-expressie als functie toepassen op
+                        het argument. De \(\eta\)-regel stelt dat als \(x \notin
+                        FV(M)\)
+                        <margin class="right">\(FV(M)\) staat voor de
+                           <em>ongebonden</em>, vrije, variabelen in
+                           \(M\).</margin>, dan geldt \(\lambda x . Mx
+                        \stackrel{\eta}{\rightarrow} M\).</p>
+                     </section>
+                  <section>
+                     
+                     <h2>Recursie met vrije variabele als naam</h2>
+                     
+                     <p>Recursie met een vrije variabele als naam, \(g\), voor een lambda-expressie
+                        is eenvoudig:
+                        <div class="mathdisplay">
+                           <p>$$\begin{equation} g = \lambda x.hgx \label{eq:1}
+                              \end{equation}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Hierin is \(h\) is een willekeurige toelaatbare expressie.
+                        De vergelijking specificeert een oneindige reeks van toepassingen van
+                        \(h\): \(hhhhhhhhhhhhhhh...\) . Dit gaat eindeloos door zonder tot
+                        een waarde te komen. Maar wat nu als we <em>geen vrije </em> variabelen
+                        willen gebruiken voor de zelf-referentie in de recursieve uitdrukking?</p>
+                     </section>
+                  <section>
+                     
+                     <h2>Recursie zonder vrije variabele als naam</h2>
+                     
+                     <p>Laten we in de rechterzijde van vergelijking \(\eqref{eq:1}\) eens de naam
+                        voor de vergelijking, \(g\), abstraheren met de introductie van een
+                        gebonden variabele:
+                        <div class="mathdisplay">
+                           <p>$$\begin{equation} g\;=\;\lambda g \lambda
+                              x . hgx \label{eq:2} \end{equation}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Merk op dat de naam voor de nieuwe vergelijking
+                        \(\eqref{eq:2}\) nog steeds \(g\) is, maar dat in de body van
+                        de lambda-expressie \(g\) gebonden is en de \(g\) in de body niet
+                        meer verwijst naar de <em>vrije </em> variabele \(g\). In het
+                        vervolg hebben we alleen de rechterhand zijde van \(\eqref{eq:2}\) nodig:
+                        
+                        <div class="mathdisplay">
+                           <p>$$\begin{equation} \lambda g \lambda x . hgx \label{eq:3}
+                              \end{equation}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Hoe kunnen we \(\eqref{eq:3}\) nu gebruiken om de recursie
+                        in \(\eqref{eq:1}\) uit te drukken? Merk op dat het eerste argument van
+                        \(\eqref{eq:3}\) de oorspronkelijke plek heeft ingenomen van de
+                        referentie naar de rechterhand zijde van \(\eqref{eq:1}\) en die hebben we
+                        nu geschreven als \(\eqref{eq:3}\). Wat als we \(\eqref{eq:3}\)
+                        toepassen op zichzelf? Immers bij recursie gaat het uiteindelijk om zelf-referentie!
+                        In \(\eqref{eq:4}\) passen we \(\eqref{eq:3}\) op zichzelf toe:
+                        
+                        <div class="mathdisplay">
+                           <p>$$\begin{equation} (\lambda g \lambda x . hgx)(\lambda g
+                              \lambda x . hgx) \label{eq:4} \end{equation}$$</p>
+                           <p class="equation"></p>
+                        </div>.</p>
+                     
+                     <p class="noindent">Laten we \(\eqref{eq:4}\) eens uitwerken. 
+                        <margin class="left">Oftewel <em>reduceren</em>.</margin> In een eerste
+                        \(\beta\)-reductie stap substitueren we in \(g\) de
+                        lambda-expressie zoals in \(\eqref{eq:3}\) en krijgen zo
+                        \(\eqref{eq:5}\): 
+                        <div class="mathdisplay">
+                           <p>$$\begin{align} &amp; (\lambda
+                              g\lambda x.hgx)(\lambda g\lambda x.hgx)\nonumber \\ = &amp;
+                              \{\mbox{$\beta$-reductie, $g\,:=\lambda g\lambda x.hgx$} \}\nonumber \\ &amp;
+                              \lambda x.h\overbrace{{(\underbrace{\;\lambda g\;}_{(b)}\lambda
+                              x.hgx)}}^{(a)}\underbrace{x}_{(c)}\label{eq:5} \end{align}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Als we nu een stap verder zouden willen reduceren dan blijft ons
+                        niets anders over dan in \(\eqref{eq:5}\)
+                        \((a)\)toe te passen op \(x\). Maar dan lopen we tegen een kleine
+                        moeilijkheid aan. Het eerste argument van \((a)\), \((b)\) zou dan
+                        \(g\) moeten zij, maar we weten niet of \(x = g\). Wat nu?
+                        wel, we hebben maar één lambda-expressie die hier voor in aanmerking komt en dat is,
+                        weer, \(\eqref{eq:3}\).  Nu verwijst \(g\) in
+                        \(\eqref{eq:3}\) naar zichzelf, ten minste, dat is de bedoeling. We
+                        hoeven de expressie hier niet te kopiëren, want we hebben er een naam voor in de
+                        vorm van een gebonden variabele \(g\)!  Wat gebeurt er als we in de body
+                        van \(\eqref{eq:3}\)
+                        \(g\) eens een keer extra op zichzelf toepassen?</p>
+                     
+                     <p class="noindent">
+                        <div class="mathdisplay">
+                           <p>$$\begin{equation} \lambda g \lambda x . h(g \;
+                              g)x \label{eq:6}\end{equation}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">En wat als we \(\eqref{eq:6}\) op zichzelf toepassen?</p>
+                     
+                     <p>\(\begin{align} &amp; (\lambda g\lambda x.h(g\, g)x)(\lambda g\lambda x.h(g\,
+                        g)x)\label{eq:7}\\ =\nonumber \\ &amp; \lambda x.h(\underbrace{(\lambda g\lambda
+                        x.h(g\, g)x)}_{(a)}\,\underbrace{(\lambda g\lambda x.h(g\,
+                        g)x)}_{(b)})x\nonumber \\ =\nonumber \\ &amp; \overbrace{\lambda
+                        x.h}^{(c)}(\overbrace{\lambda x.h}^{(d)}(\underbrace{(\lambda g\lambda x.h(g\,
+                        g)x}_{(a)}\,\underbrace{(\lambda g\lambda x.h(g\, g)x)}_{(b)})x)x\label{eq:8}\\
+                        =\nonumber \\ &amp; \dots\nonumber \end{align}\)</p>
+                     
+                     <p class="noindent">Ten eerste zien we dat in \(\eqref{eq:7}\), met de delen
+                        \((c)\) en \((d)\) de toepassing van \(h\) wordt
+                        herhaald, maar ook  dat \(\eqref{eq:6}\) als deelexpressie in de toepassing
+                        van \(\eqref{eq:6}\) op zichzelf in \((a)\) en \((b)\)
+                        wordt behouden! Het lijkt erop of we iets bij de staart hebben, maar het is niet
+                        meteen duidelijk dat we met \(\eqref{eq:7}\) nu ook een uitdrukking hebben
+                        voor de oneindig herhaalde toepassing van \(h\) op zichzelf. Kunnen we niet
+                        het een en ander eenvoudiger opschrijven, te beginnen bij uitdrukking
+                        \(\eqref{eq:6}\)?</p>
+                     
+                     <p>
+                        <div class="mathdisplay">
+                           <p>$$\begin{align} &amp; \lambda g \lambda x.h(g\, g)x \nonumber
+                              \\ = &amp; \mbox{\{ terug naar enkelvoudige lambda-expressies \}} \nonumber \\
+                              &amp; \lambda g.(\lambda x.h(g\, g)x)\nonumber \\ = &amp; \mbox{\{ expliciet
+                              maken van volgorde van toepassing \}} \nonumber \\ &amp; \lambda g.(\lambda
+                              x.h((g\, g)(x)) \nonumber \\ = &amp; \mbox{\{ $h(g(x))=(h\, g)(x)$\} } \nonumber
+                              \\ &amp; \lambda g.(\lambda x.(h\,(g\, g))\,x) \nonumber \\ = &amp; \mbox{\{
+                              $\eta$-reductie, mits $x$ niet vrij in $(h\,(g\, g))$ voorkomt \}} \nonumber \\
+                              &amp; \lambda g.h(g\, g) \label{eq:9} \end{align}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Met \(\eqref{eq:9}\) hebben we een eenvoudiger uitdrukking
+                        voor \(\eqref{eq:3}\) en voeren weer dezelfde reducties uit als in de
+                        toepassing van \(\eqref{eq:3}\) op zichzelf:</p>
+                     
+                     <p>
+                        <div class="mathdisplay">
+                           <p>$$\begin{align*} &amp; (\lambda g.h(g\,g)\,(\lambda
+                              g.h(g\,g))\\ =\\ &amp; h((\lambda g.h(g\,g))\,(\lambda g.h(g\,g)))\\ =\\ &amp;
+                              h(h((\lambda g.h(g\,g))\,(\lambda g.h(g\,g))))\\ =\\ &amp; \dots
+                              \end{align*}$$</p>
+                           <p class="equation"></p>
+                        </div>
+                     </p>
+                     
+                     <p class="noindent">Nu levert de reductie van de toepassing van \(\eqref{eq:6}\)
+                        wél een overtuigende oneindige reeks van \(h\) op zichzelf toegepast.</p>
+                     </section>
+                  <section>
+                     
+                     <h2>De <span class="Y">-combinator</span> is geboren</h2>
+                     
+                     <p>Kortom, \(\eqref{eq:6}\) op zichzelf toegepast levert bij voortgezette
+                        reductie een oneindige reeks van toepassingen van \(h\) op. Als we ook
+                        \(h\) abstraheren door de introductie van een nieuwe gebonden
+                        variabele, dan hebben we een \(\lambda\)-uitdrukking die recursie mogelijk
+                        maakt zonder zelf-referentie via een expliciete <em>naam</em> buiten de
+                        context van een \(\lambda\)-expressie, die \(\lambda\)-expressie
+                        is de <span class="Y">-combinator</span>:</p>
+                     
+                     <p>\(\begin{equation} \mmlToken{mi}[mathvariant="bold-sans-serif"]{Y} = \lambda
+                        h.(\lambda g.h(g\,g))(\lambda g.h(g\,g))\label{eq:10} \end{equation}\)</p>
+                     </section>
+                  <hr>
+                  <section class="bibliography" id="references">
+                     <h2>Bibliografie</h2>
+                     <dl>
+                        
+                        <p>Eigenlijk is alleen <a href="#Hindley86">Hindley86</a> nodig. De overige boeken geven achtergrond
+                           informatie of borduren voort op de lambda-calculus. De eerste hoofdstukken van
+                           <a href="#Nederpelt14">Nederpelt14</a> geven een aanbevelenwaardige introductie tot de lambda
+                           calculus.</p>
+                        
+                        <dt><a id="Abelson85">Abelson85</a></dt>
+                        <dd>
+                           <authors>Abelson, H., 
+                              Sussman, G. J., 
+                               and Sussman, J., 
+                              </authors><cite>Structure and Interpretation of Computer Programs</cite>, <span class="name">MIT Press</span>, <span class="location">Cambridge</span>, <time datetime="1985">1985</time></dd>
+                        
+                        <dt><a id="Allen78">Allen78</a></dt>
+                        <dd>
+                           <authors>Allen, J., 
+                              </authors><cite>Anatomy of LISP</cite>, <span class="name">MacGraw-Hill</span>, <span class="location">1978</span></dd>
+                        
+                        <dt><a id="Backus78">Backus78</a></dt>
+                        <dd>
+                           <authors>Backus, J., 
+                              </authors><cite>Can Programming be Liberated for the von Neumann style?: A Functional Style
+                              and Its Algebra of Programs</cite>, <span class="name">Communications of the ACM</span>, <span class="location">21(8) 613-641</span>, <time datetime="1978">1978</time></dd>
+                        
+                        <dt><a id="Barendregt84">Barendregt84</a></dt>
+                        <dd>
+                           <authors>Barendregt, H. P.,, 
+                              </authors><cite>The lambda calculus : its syntax and semantics. Revised edition.</cite>, <span class="name">North-Holland</span>, <span class="location">New York, N.Y.</span>, <time datetime="1984">1984</time></dd>
+                        
+                        <dt><a id="Bird98">Bird98</a></dt>
+                        <dd>
+                           <authors>Bird, R., 
+                              </authors><cite>Introduction to functional programming using Haskell</cite>, <span class="name">Prentice-Hall Europe</span>, <span class="location">London</span>, <time datetime="1998">1998</time></dd>
+                        
+                        <dt><a id="Burge75">Burge75</a></dt>
+                        <dd>
+                           <authors>Burge, W. H., 
+                              </authors><cite>Recursive Programming Techniques</cite>, <span class="name">Addison-Wesley</span>, <span class="location">Reading, Mass.</span>, <time datetime="1975">1975</time></dd>
+                        
+                        <dt><a id="Friedman96">Friedman96</a></dt>
+                        <dd>
+                           <authors>Friedman, D.P., 
+                              Friedman, D. P. L. L., 
+                               and Felleisen, M., 
+                              </authors><cite>The Little Schemer</cite>, <span class="name">MIT Press</span>, <span class="location">Cambridge Mass.</span>, <time datetime="1996">1996</time></dd>
+                        
+                        <dt><a id="Hindley86">Hindley86</a></dt>
+                        <dd>
+                           <authors>Hindley, J. R., 
+                               and Seldin, J. P., 
+                              </authors><cite>Introduction to combinators and $\lambda$-calculus</cite></dd>
+                        
+                        <dt><a id="Nederpelt14">Nederpelt14</a></dt>
+                        <dd>
+                           <authors>Nederpelt, R., 
+                               and  Reuvers, H., 
+                              </authors><cite>Type Theory and Formal Proof: An Introduction</cite>, <span class="name">Cambridge University Press</span>, <span class="location">United Kingdom</span>, <time datetime="2014">2014</time></dd>
+                        
+                        <dt><a id="scheme">scheme</a></dt>
+                        <dd><cite>The Revised<sup>6</sup> Report on the Algorithmic Language Scheme </cite><a href="http://www.r6rs.org">http://www.r6rs.org/</a></dd>
+                        
+                        <dt><a id="Stoy77">Stoy77</a></dt>
+                        <dd>
+                           <authors>Stoy, J. E., 
+                              </authors><cite>Semantics</cite>, <span class="name">MIT Press</span>, <span class="location">Cambridge, Mass.</span>, <time datetime="1977">1977</time></dd>
+                        </dl>
+                  </section>
+                  <hr>
+               </sections>
+               </article>
+         </div>
+         <div id="footer" title="To the index.">
+            <div id="floater-mask"></div>
+            <div id="index">INDEX</div>
+         </div>
+         <div id="floater-bottom" title="To the index."></div>
+      </div>
+   </body><script src="scripts/lib/jquery-1.9.1.min.js"></script><script src="scripts/blog.js"></script><script type="text/x-mathjax-config">
+                    MathJax.Hub.Config({
+                    jax : ["output/HTML-CSS"], // To prevent centering of equations in align-environment.
+                    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+                    TeX: { equationNumbers: { autoNumber: "AMS" } } 
+                    });
+                </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></html>

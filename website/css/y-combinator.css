@@ -1,0 +1,12 @@
+
+.Y:before {
+    content: "Y";
+    font-weight: 600;
+    font-style: normal;
+    font-family: arial, helvetica, sans-serif;
+}
+
+.Y {
+    font-weight: inherit;
+    font-family: inherit;
+}
