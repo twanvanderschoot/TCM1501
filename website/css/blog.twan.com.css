@@ -101,13 +101,13 @@ header {
   header a[rel=author] {
     display: block;
     font-family: "Georgia";
-    font-weight: 70;
+    font-weight: 100;
     color: green;
     font-size: 1.1em; }
   header a[rel=affiliation] {
     display: block;
     font-family: "Georgia";
-    font-weight: 70;
+    font-weight: 100;
     color: green;
     font-size: 1.1em; }
 
@@ -168,7 +168,7 @@ article {
   width: 67%;
   margin: 50px auto 50px;
   font-family: "Georgia";
-  font-weight: 70;
+  font-weight: 100;
   font-size: 1.2em;
   line-height: 1.6em;
   text-align: justify;
