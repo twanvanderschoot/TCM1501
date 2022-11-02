@@ -159,7 +159,8 @@
                 <math>g</math> eens een keer extra op zichzelf toepassen?</p>
             <p noindent="true"><math display="display">\begin{equation} \lambda g \lambda x . h(g \;
                     g)x \label{eq:6}\end{equation}</math></p>
-            <p noindent="true">En wat als we <math>\eqref{eq:6}</math> op zichzelf toepassen?</p>
+            <p noindent="true">En wat als we <math>\eqref{eq:6}</math> op zichzelf toepassen,
+                analoog aan wat we in <math>\eqref{eq:4}</math> hebben gedaan?</p>
             <p><math>\begin{align} &amp; (\lambda g\lambda x.h(g\, g)x)(\lambda g\lambda x.h(g\,
                     g)x)\label{eq:7}\\ =\nonumber \\ &amp; \lambda x.h(\underbrace{(\lambda g\lambda
                     x.h(g\, g)x)}_{(a)}\,\underbrace{(\lambda g\lambda x.h(g\,
