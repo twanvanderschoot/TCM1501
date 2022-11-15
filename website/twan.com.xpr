@@ -596,6 +596,9 @@
         </options>
     </meta>
     <projectTree name="twan.com.xpr">
+        <folder name="experiments">
+            <folder path="experiments/"/>
+        </folder>
         <folder name="localhost">
             <folder name="css"/>
             <folder name="data"/>
