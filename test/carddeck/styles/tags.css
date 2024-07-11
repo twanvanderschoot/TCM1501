@@ -1,0 +1,159 @@
+/* Depends on:
+* reset.css
+* main.css for defined variables
+*/
+
+div.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+/* ==== Programming Language Icons ============================================= */
+
+div.tag {
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    padding:0;
+    margin:0 0.2em;
+
+}
+
+div[tag="python"] {
+    background: url(../images/programming-language-python.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="julia"] {
+    background: url(../images/programming-language-julia.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="mathematica"] {
+    background: url(../images/programming-language-mathematica.svg) no-repeat center;
+    background-size: contain;
+    border: black solid 1px;
+}
+
+div[tag="wolfram-language"] {
+    background: url(../images/programming-language-wolfram-language.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="cplusplus"] {
+    background: url(../images/programming-language-cplusplus.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="erlang"] {
+    background: url(../images/programming-language-erlang.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="go"] {
+    background: url(../images/programming-language-go.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="java"] {
+    background: url(../images/programming-language-java.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="javascript"] {
+    background: url(../images/programming-language-javascript.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="rust"] {
+    background: url(../images/programming-language-rust.svg) no-repeat center;
+    background-size: contain;
+}
+
+/* ==== Natural Language Icons ============================================= */
+div[tag="en-uk"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-gb.svg) no-repeat center;
+}
+div[tag="nl-nl"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-nl.svg) no-repeat center;
+}
+
+div[tag="jp-jp"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-jp.svg) no-repeat center;
+}
+
+/* ===== Miscellaneous icons ======================================================= */
+
+div[tag="soapbox"]{
+    height: 1.1em;
+    width: 1.1em;
+    background: url(../images/megaphone.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="logic"]{
+    height: 1.1em;
+    width: 1.1em;
+    background: url(../images/logic-logo.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="uml"]{
+    background: url(../images/uml-logo.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="jupyter"]{
+    background: url(../images/jupyter-logo.svg) no-repeat center;
+    background-size: contain;
+    border: gray solid 1px;
+    box-shadow: 2px 2px 2px var(--text-background-color);
+}
+
+div[tag="idea"]{
+    background: url(../images/idea.svg) no-repeat center;
+    background-size: contain;
+}
+
+/* ===== Tooltip ======================================================= */
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+   /* border-bottom: 1px dotted black; ** If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #cef1fd;
+    color: var(--text-color);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* eof(tags.css) */

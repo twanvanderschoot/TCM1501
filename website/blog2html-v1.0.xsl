@@ -77,8 +77,8 @@
                     TeX: { equationNumbers: { autoNumber: "AMS" } } 
                     });]]>
                 </script>
-                <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-                </script>
+                <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
             </xsl:if>
             <xsl:if test="//pre[attribute::type='code']">
                 <script src="scripts/lib/google-code-prettify/run_prettify.js"/>

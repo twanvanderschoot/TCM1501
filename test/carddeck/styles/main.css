@@ -1,0 +1,64 @@
+/* ===== Main CSS file for TWAN.COM =====
+
+Depends on:
+- reset.css
+- global.css
+- tags.css
+
+*/
+
+body {
+    font-family: var(--text-font), sans-serif;
+    font-size: var(--text-font-size);
+    color: var(--text-color);
+    line-height: normal;
+
+    /*background-color: bisque;*/
+}
+
+div#frontpage {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header.frontpage {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    justify-items: end;
+    margin: 1em auto;
+    width: 100%;
+    border: 1px dashed green;
+}
+
+div.company-logo {
+    background: url("../images/TWAN.COM-transparant.png") no-repeat center;
+    background-size: contain;
+    min-height: 200px;
+    min-width: 800px;
+}
+
+ul.main-menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: flex-start;
+    justify-content: space-evenly;
+    align-items: end;
+    margin: 0;
+    width: 50%;
+    list-style-type: none;
+}
+
+ul.main-menu li {
+    display: block;
+    font-family: var(--header-font), sans-serif;
+    font-size: 24pt;
+    font-weight: var(--label-font-weight);
+    color: var(--text-color);
+    padding: 0 1em;
+    text-align: left;
+    background-color: var(--menu-bg-color);
+}
+
+
+/* eof(main.css) */

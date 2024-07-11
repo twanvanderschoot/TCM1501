@@ -57,6 +57,26 @@
                         <xs:documentation>Een optionele samenvatting van het artikel.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <xs:element minOccurs="0" name="tags">
+                    <xs:annotation>
+                        <xs:documentation>Bevat tag-elementen van toepassing op het artikel. </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tag">
+                                <xs:complexType>
+                                    <xs:attribute name="name">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="1"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

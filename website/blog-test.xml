@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="css/authoring-blog.twan.com.css"?>
-<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="blog.twan.com.xsd">
+<article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.twan.com/schemas/site/blog.xsd">
     <header>
         <title>Test Blog XML</title>
         <author href="twan@twan.com">Twan van der Schoot</author>
         <affiliation href="http://www.twan.com">TWAN.COM</affiliation>
         <date>2015-06-06</date>
         <abstract>Een samenvatting van het hieronder geschrevene.</abstract>
+        <tags>
+            <tag name="python"/>
+        </tags>
     </header>
     <p> een stuk in leidende tekst</p>
     <img href="images/50x50.png">Dit is de caption van het eerste plaatje bij de inleiding</img>

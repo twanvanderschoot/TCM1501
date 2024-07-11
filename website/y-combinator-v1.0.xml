@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/css" href="../../../../../Dropbox/TWAN.COM/TCM/TCM1501/website/css/authoring-blog.twan.com.css"?>
 <?xml-stylesheet type="text/xsl" href="../../../../../Dropbox/TWAN.COM/TCM/TCM1501/website/blog2html-v1.0.xsl"?>
 <article xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="blog.twan.com.xsd" stylesheet="y-combinator.css">
+ xsi:noNamespaceSchemaLocation="https://www.twan.com/schemas/site/blog.xsd" stylesheet="y-combinator.css">
     <header>
         <title>De Y-combinator</title>
         <author>Twan van der Schoot</author>

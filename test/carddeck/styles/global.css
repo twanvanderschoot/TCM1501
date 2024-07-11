@@ -1,0 +1,33 @@
+/* ===== Global CSS --Variables =====
+    Shared by all stylesheets of the site.
+*/
+
+@property --text-font-size {
+    syntax: "*";
+    inherits: true;
+    initial-value: 13pt;
+}
+
+:root {
+    --logo-text-color: #05046AFF;
+    --bar-active-color: #1A1A1AFF; /*(dark blue)*/
+    --bar-inactive-color: #BCECFCFF; /*(near black)*/
+    --header-font: "Bitstream Vera Sans Bold", "Gill Sans", sans-serif;
+    --header-font-size: 23pt;
+    --label-font-size: 12.75pt;
+    --label-font-weight: 600;
+    --text-font: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    --text-background-color: #A0C4FBFF; /*(lighter blue)*/
+    --text-color: #355050;
+    --text-font-size: 13pt;
+
+    --menu-bg-color:  #cef1fd;
+
+    --deck-max-columns: 4;
+    --deck-columns: var(--deck-max-columns);
+    --deck-column-unit-height: 450px;
+    --deck-column-width: 300px;
+    --deck-gutter: 10px;
+}
+
+/*eof(global.css)*/

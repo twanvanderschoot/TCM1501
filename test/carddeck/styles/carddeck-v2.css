@@ -1,0 +1,255 @@
+/*
+* ====== Card Deck stylesheet V2 ======
+* Assuming a fixed size deck subdivided into "column" div-elements in flex row order.
+* Each column containing cards.  More "liquid", because the columns re
+* Depends on
+* - reset.css
+* - main.css for the variable definitions
+*/
+
+div.deck {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    clear: both;
+}
+
+div.column {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: stretch;
+    width: 20%;
+    /*min-width: 300px;*/
+    min-width: 300px;
+    height: auto;
+    background-color: bisque;
+}
+
+div.card {
+    display: block;
+
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: 10px 1em;
+    margin: 10px;
+    background-color: white;
+
+    box-shadow: 5px 5px 5px -2px lightgray;
+
+    font-family: var(--text-font), serif;
+    font-size: var(--text-font-size);
+    color: var(--text-color); /* darker slategray */
+
+}
+
+.span-2-h {
+
+}
+
+div.card h2 {
+    font-family: var(--header-font), sans-serif;
+    color: var(--logo-text-color);
+    font-size: var(--header-font-size);
+    font-weight: var(--label-font-weight);
+    font-stretch: extra-condensed;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-kerning: normal;
+}
+
+
+time[itemprop="datePublished"] {
+    display: block;
+    font-family: var(--text-font), serif;
+    font-size: .8em;
+    text-align: right;
+}
+
+
+img {
+    max-width: 100%;
+}
+
+
+a {
+    color: #cef1fd;
+    text-decoration: none;
+    font-family: var(--text-font), serif;
+    font-size: var(--text-font-size);
+}
+
+
+a[itemprop="discussionUrl"] {
+    font-family: var(--text-font), serif;
+    font-size: var(--text-font-size);
+    margin-right: 1em;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 1em;
+    width: 300px;
+}
+
+div.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+/* ==== Programming Language Icons ============================================= */
+
+div.tag {
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    padding:0;
+    margin:0 0.2em;
+
+}
+
+div[tag="python"] {
+    background: url(../images/programming-language-python.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="julia"] {
+    background: url(../images/programming-language-julia.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="mathematica"] {
+    background: url(../images/programming-language-mathematica.svg) no-repeat center;
+    background-size: contain;
+    border: black solid 1px;
+}
+
+div[tag="wolfram-language"] {
+    background: url(../images/programming-language-wolfram-language.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="cplusplus"] {
+    background: url(../images/programming-language-cplusplus.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="erlang"] {
+    background: url(../images/programming-language-erlang.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="go"] {
+    background: url(../images/programming-language-go.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="java"] {
+    background: url(../images/programming-language-java.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="javascript"] {
+    background: url(../images/programming-language-javascript.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="rust"] {
+    background: url(../images/programming-language-rust.svg) no-repeat center;
+    background-size: contain;
+}
+
+/* ==== Natural Language Icons ============================================= */
+div[tag="en-uk"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-gb.svg) no-repeat center;
+}
+div[tag="nl-nl"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-nl.svg) no-repeat center;
+}
+
+div[tag="jp-jp"]{
+    font-size: var(--text-font-size);
+    height: 1em;
+    width: 1em;
+    background: url(../images/national-flag-jp.svg) no-repeat center;
+}
+
+/* ===== Miscellaneous icons ======================================================= */
+
+div[tag="soapbox"]{
+    height: 1.1em;
+    width: 1.1em;
+    background: url(../images/megaphone.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="logic"]{
+    height: 1.1em;
+    width: 1.1em;
+    background: url(../images/logic-logo.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="uml"]{
+    background: url(../images/uml-logo.svg) no-repeat center;
+    background-size: contain;
+}
+
+div[tag="jupyter"]{
+    background: url(../images/jupyter-logo.svg) no-repeat center;
+    background-size: contain;
+    border: gray solid 1px;
+    box-shadow: 2px 2px 2px var(--text-background-color);
+}
+
+div[tag="idea"]{
+    background: url(../images/idea.svg) no-repeat center;
+    background-size: contain;
+}
+
+/* ===== Tooltip ======================================================= */
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+   /* border-bottom: 1px dotted black; ** If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #cef1fd;
+    color: var(--text-color);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
